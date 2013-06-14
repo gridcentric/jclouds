@@ -36,6 +36,9 @@ import org.jclouds.rest.annotations.PayloadParam;
 import org.jclouds.rest.annotations.RequestFilters;
 import org.jclouds.rest.annotations.SelectJson;
 import org.jclouds.rest.annotations.WrapWith;
+import org.jclouds.rest.annotations.Unwrap;
+import org.jclouds.rest.annotations.MapBinder;
+import org.jclouds.rest.annotations.Payload;
 import org.jclouds.rest.functions.ReturnEmptyFluentIterableOnNotFoundOr404;
 import org.jclouds.rest.functions.ReturnFalseOnNotFoundOr404;
 import org.jclouds.rest.functions.ReturnNullOnNotFoundOr404;
@@ -65,7 +68,7 @@ public interface VmsAsyncApi {
    @Unwrap // unwraps single entry json, eg {"foo":"bar"} becomes "bar", could use SelectJson instead
    @Consumes(MediaType.APPLICATION_JSON) // this is response, [ {} ] array of json tho
    ListenableFuture<ServerCreated> liveImageCreate(
-         @PathParam("server_id") String serverId
+         @PathParam("server_id") String serverId,
          @PayloadParam("name") String liveImageName);
 
    /**
@@ -78,7 +81,7 @@ public interface VmsAsyncApi {
    // @WrapWith("gc_launch") 
    @MapBinder(LaunchServerOptions.class)
    ListenableFuture<? extends FluentIterable<? extends ServerCreated>> liveImageStart(
-         @PathParam("server_id") String serverId
+         @PathParam("server_id") String serverId,
          @PayloadParam("name") String launchedName,
          LaunchServerOptions... options);
 

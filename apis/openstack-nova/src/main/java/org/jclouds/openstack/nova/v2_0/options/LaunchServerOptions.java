@@ -108,7 +108,7 @@ public class LaunchServerOptions implements MapBinder {
    private Set<String> securityGroupNames = ImmutableSet.of();
    private Map<String, String> guestParams = ImmutableMap.of();
    private Map<String, String> schedulerHints = ImmutableMap.of();
-   private List<File> personality = Lists.newArrayList(); // huh, useful RUITODO
+   // private List<File> personality = Lists.newArrayList(); // huh, useful RUITODO
    private byte[] userData;
    private int numInstances;
 
@@ -121,7 +121,7 @@ public class LaunchServerOptions implements MapBinder {
          final LaunchServerOptions other = LaunchServerOptions.class.cast(object);
          return equal(keyName, other.keyName) && equal(securityGroupNames, other.securityGroupNames)
                   && equal(guestParams, other.guestParams) && equal(schedulerHints, other.schedulerHints)
-                  && (numInstances == other.numInstances));
+                  && (numInstances == other.numInstances);
       } else {
          return false;
       }
@@ -141,8 +141,7 @@ public class LaunchServerOptions implements MapBinder {
          toString.add("guestParams", guestParams);
       if (schedulerHints.size() > 0)
          toString.add("schedulerHints", schedulerHints);
-      if (numInstances.size() > 0)
-         toString.add("numInstances", numInstances);
+      toString.add("numInstances", numInstances);
       toString.add("userData", userData == null ? null : new String(userData));
       return toString;
    }
@@ -171,14 +170,15 @@ public class LaunchServerOptions implements MapBinder {
    @Override
    public <R extends HttpRequest> R bindToRequest(R request, Map<String, Object> postParams) {
       ServerRequest server = new ServerRequest(checkNotNull(postParams.get("name"), "name parameter not present").toString());
+      if (numInstances < 1)
+          numInstances=1;
+      server.num_instances = numInstances;
       if (guestParams.size() > 0)
          server.guest = guestParams;
       if (schedulerHints.size() > 0)
          server.scheduler_hints = schedulerHints;
       if (keyName != null)
          server.key_name = keyName;
-      if (numInstances != null)
-         server.num_instances = numInstances;
       if (userData != null)
           server.user_data = Base64.encodeBytes(userData);
       if (securityGroupNames.size() > 0) {
@@ -271,7 +271,7 @@ public class LaunchServerOptions implements MapBinder {
    /**
     * Number of instances to launch.
     */
-   public String getNumInstances() {
+   public int getNumInstances() {
       return numInstances;
    }
    

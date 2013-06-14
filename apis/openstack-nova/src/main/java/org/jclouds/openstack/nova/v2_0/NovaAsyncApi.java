@@ -36,6 +36,7 @@ import org.jclouds.openstack.nova.v2_0.extensions.VirtualInterfaceAsyncApi;
 import org.jclouds.openstack.nova.v2_0.extensions.VolumeAsyncApi;
 import org.jclouds.openstack.nova.v2_0.extensions.VolumeAttachmentAsyncApi;
 import org.jclouds.openstack.nova.v2_0.extensions.VolumeTypeAsyncApi;
+import org.jclouds.openstack.nova.v2_0.extensions.VmsAsyncApi;
 import org.jclouds.openstack.nova.v2_0.features.FlavorAsyncApi;
 import org.jclouds.openstack.nova.v2_0.features.ImageAsyncApi;
 import org.jclouds.openstack.nova.v2_0.features.ServerAsyncApi;
@@ -197,6 +198,13 @@ public interface NovaAsyncApi {
     */
    @Delegate
    Optional<? extends VolumeTypeAsyncApi> getVolumeTypeExtensionForZone(
+         @EndpointParam(parser = ZoneToEndpoint.class) @Nullable String zone);
+
+   /**
+    * Provides asynchronous access to VMS features.
+    */
+   @Delegate
+   Optional<? extends VmsAsyncApi> getVmsExtensionForZone(
          @EndpointParam(parser = ZoneToEndpoint.class) @Nullable String zone);
 
 }

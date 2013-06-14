@@ -38,6 +38,7 @@ import org.jclouds.openstack.nova.v2_0.extensions.VirtualInterfaceApi;
 import org.jclouds.openstack.nova.v2_0.extensions.VolumeApi;
 import org.jclouds.openstack.nova.v2_0.extensions.VolumeAttachmentApi;
 import org.jclouds.openstack.nova.v2_0.extensions.VolumeTypeApi;
+import org.jclouds.openstack.nova.v2_0.extensions.VmsApi;
 import org.jclouds.openstack.nova.v2_0.features.FlavorApi;
 import org.jclouds.openstack.nova.v2_0.features.ImageApi;
 import org.jclouds.openstack.nova.v2_0.features.ServerApi;
@@ -200,4 +201,10 @@ public interface NovaApi {
    Optional<? extends VolumeTypeApi> getVolumeTypeExtensionForZone(
          @EndpointParam(parser = ZoneToEndpoint.class) @Nullable String zone);
 
+   /**
+    * Provides synchronous access to VMS features.
+    */
+   @Delegate
+   Optional<? extends VmsApi> getVmsExtensionForZone(
+         @EndpointParam(parser = ZoneToEndpoint.class) @Nullable String zone);
 }

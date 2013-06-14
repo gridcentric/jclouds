@@ -61,6 +61,8 @@ import org.jclouds.openstack.nova.v2_0.extensions.VolumeAttachmentApi;
 import org.jclouds.openstack.nova.v2_0.extensions.VolumeAttachmentAsyncApi;
 import org.jclouds.openstack.nova.v2_0.extensions.VolumeTypeApi;
 import org.jclouds.openstack.nova.v2_0.extensions.VolumeTypeAsyncApi;
+import org.jclouds.openstack.nova.v2_0.extensions.VmsApi;
+import org.jclouds.openstack.nova.v2_0.extensions.VmsAsyncApi;
 import org.jclouds.openstack.nova.v2_0.features.FlavorApi;
 import org.jclouds.openstack.nova.v2_0.features.FlavorAsyncApi;
 import org.jclouds.openstack.nova.v2_0.features.ImageApi;
@@ -113,6 +115,7 @@ public class NovaRestClientModule<S extends NovaApi, A extends NovaAsyncApi> ext
          .put(VolumeApi.class, VolumeAsyncApi.class)
          .put(VolumeAttachmentApi.class, VolumeAttachmentAsyncApi.class)
          .put(VolumeTypeApi.class, VolumeTypeAsyncApi.class)
+         .put(VmsApi.class, VmsAsyncApi.class)
          .build();
    
    @SuppressWarnings("unchecked")

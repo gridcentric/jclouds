@@ -107,4 +107,9 @@ public interface ExtensionNamespaces {
     * Aggregates extension
     */
    public static final String AGGREGATES = "http://docs.openstack.org/ext/aggregates/api/v1.1";
+
+   /**
+    * Virtual Memory Stream extension
+    */
+   public static final String VMS = "http://docs.gridcentric.com/openstack/";
 }

@@ -35,7 +35,7 @@ import com.google.common.collect.FluentIterable;
  * @see org.jclouds.openstack.nova.v2_0.extensions.VmsAsyncApi
  */
 @Beta
-@Extension(of = ServiceType.COMPUTE, namespace = ExtensionNamespaces.ADMIN_ACTIONS)
+@Extension(of = ServiceType.COMPUTE, namespace = ExtensionNamespaces.VMS)
 @Timeout(duration = 180, timeUnit = TimeUnit.SECONDS)
 public interface VmsApi {
     

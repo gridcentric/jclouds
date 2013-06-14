@@ -167,7 +167,7 @@ public class NovaRestClientModule<S extends NovaApi, A extends NovaAsyncApi> ext
           .put(URI.create(ExtensionNamespaces.VOLUME_TYPES),
                URI.create("http://docs.openstack.org/compute/ext/volume_types/api/v1.1"))
           .put(URI.create(ExtensionNamespaces.VMS),
-               URI.create("http://docs.gridcentric.com/openstack/"))
+               URI.create("http://docs.gridcentric.com/openstack/ext/api/v1"))
           .build();
    }
 

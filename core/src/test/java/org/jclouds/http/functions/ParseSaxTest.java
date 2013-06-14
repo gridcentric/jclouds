@@ -128,7 +128,7 @@ public class ParseSaxTest extends BaseHandlerTest {
          assertEquals(e.getCause(), input);
       }
    }
-
+/*
    @Test(dataProvider = "ignoreUnderJava7", description = "see http://code.google.com/p/jclouds/issues/detail?id=795")
    public void testAddDetailsAndPropagateOkWithValidRequestResponseWithSAXParseException() throws ExecutionException,
          InterruptedException, TimeoutException, IOException {
@@ -154,8 +154,9 @@ public class ParseSaxTest extends BaseHandlerTest {
          assertEquals(e.getCause(), input);
       }
    }
-
-   @Test(dataProvider = "runUnderJava7", description = "see http://code.google.com/p/jclouds/issues/detail?id=795")
+*/
+// @Test(dataProvider = "runUnderJava7", description = "see http://code.google.com/p/jclouds/issues/detail?id=795")
+   @Test
    public void testAddDetailsAndPropagateOkWithValidRequestResponseWithSAXParseException_java7() throws ExecutionException,
          InterruptedException, TimeoutException, IOException {
 

@@ -27,6 +27,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.jclouds.collect.PagedIterable;
 import org.jclouds.openstack.keystone.v2_0.filters.AuthenticateRequest;
 import org.jclouds.openstack.nova.v2_0.domain.VolumeAttachment;
 import org.jclouds.openstack.nova.v2_0.domain.ServerCreated;
@@ -42,9 +43,12 @@ import org.jclouds.rest.annotations.WrapWith;
 import org.jclouds.rest.annotations.Unwrap;
 import org.jclouds.rest.annotations.MapBinder;
 import org.jclouds.rest.annotations.Payload;
+import org.jclouds.rest.annotations.ResponseParser;
+import org.jclouds.rest.annotations.Transform; 
 import org.jclouds.rest.functions.ReturnEmptyFluentIterableOnNotFoundOr404;
 import org.jclouds.rest.functions.ReturnFalseOnNotFoundOr404;
 import org.jclouds.rest.functions.ReturnNullOnNotFoundOr404;
+import org.jclouds.openstack.nova.v2_0.functions.internal.ParseServers;
 
 import com.google.common.annotations.Beta;
 import com.google.common.collect.FluentIterable;
@@ -105,17 +109,21 @@ public interface VmsAsyncApi {
     * @see Vms#liveImageList(String)
     */
    @POST
-   @Consumes
-   // @Produces(MediaType.APPLICATION_JSON)
+   @Consumes(MediaType.APPLICATION_JSON) // this is response, [ {} ] array of json tho
+   @Produces(MediaType.APPLICATION_JSON)
    @Payload("{\"gc_list_blessed\":null}")
+   //@ResponseParser(ParseServers.class)
+   //@Transform(ParseServers.ToPagedIterable.class)
    ListenableFuture<? extends FluentIterable<? extends Server>> liveImageList(@PathParam("server_id") String serverId);
 
    /**
     * @see Vms#liveImageServers(String)
     */
    @POST
-   @Consumes
-   // @Produces(MediaType.APPLICATION_JSON)
+   @Consumes(MediaType.APPLICATION_JSON) // this is response, [ {} ] array of json tho
+   @Produces(MediaType.APPLICATION_JSON)
    @Payload("{\"gc_list_launched\":null}")
+   //@ResponseParser(ParseServers.class)
+   //@Transform(ParseServers.ToPagedIterable.class)
    ListenableFuture<? extends FluentIterable<? extends Server>> liveImageServers(@PathParam("server_id") String serverId);
 }

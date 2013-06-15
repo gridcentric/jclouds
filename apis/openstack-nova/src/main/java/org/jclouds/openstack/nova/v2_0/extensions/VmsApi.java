@@ -19,6 +19,7 @@ package org.jclouds.openstack.nova.v2_0.extensions;
 import java.util.concurrent.TimeUnit;
 import java.util.Set;
 
+import org.jclouds.collect.PagedIterable;
 import org.jclouds.concurrent.Timeout;
 import org.jclouds.openstack.v2_0.ServiceType;
 import org.jclouds.openstack.v2_0.services.Extension;

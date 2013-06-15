@@ -16,6 +16,8 @@
  */
 package org.jclouds.openstack.nova.v2_0.extensions;
 
+import java.util.Set;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -61,13 +63,16 @@ public interface VmsAsyncApi {
    /**
     * @see Vms#liveImageCreate(String, String)
     */
-   // @ExceptionParser(ReturnNullOnNotFoundOr404.class)
+   //@ExceptionParser(ReturnNullOnNotFoundOr404.class)
    @POST
    @WrapWith("gc_bless") 
-   @Produces(MediaType.APPLICATION_JSON) // request
-   @Unwrap // unwraps single entry json, eg {"foo":"bar"} becomes "bar", could use SelectJson instead
+   //@Produces(MediaType.APPLICATION_JSON) // request//hm, since ServerCreated,
+   //dont need?
+   //@Unwrap // unwraps single entry json, eg {"foo":"bar"} becomes "bar", could use SelectJson instead
+   // @ExceptionParser(ReturnEmptySetOnNotFoundOr404.class)
+   //@SelectJson("server")
    @Consumes(MediaType.APPLICATION_JSON) // this is response, [ {} ] array of json tho
-   ListenableFuture<ServerCreated> liveImageCreate(
+   ListenableFuture<? extends FluentIterable<? extends ServerCreated>> liveImageCreate(
          @PathParam("server_id") String serverId,
          @PayloadParam("name") String liveImageName);
 

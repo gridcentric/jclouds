@@ -17,6 +17,7 @@
 package org.jclouds.openstack.nova.v2_0.extensions;
 
 import java.util.concurrent.TimeUnit;
+import java.util.Set;
 
 import org.jclouds.concurrent.Timeout;
 import org.jclouds.openstack.v2_0.ServiceType;
@@ -47,7 +48,7 @@ public interface VmsApi {
      *
      * @return the newly created live image
      */
-    ServerCreated liveImageCreate(String serverId, String liveImageName);
+    FluentIterable<? extends ServerCreated> liveImageCreate(String serverId, String liveImageName);
 
     /**
      * Start a live image

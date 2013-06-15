@@ -90,6 +90,11 @@ public class NovaErrorHandler implements HttpErrorHandler {
                exception = new IllegalStateException(message, exception);
             else if (message.indexOf("already exists") != -1)
                exception = new IllegalStateException(message, exception);
+            else if (message.indexOf("still has launched instances") != -1)
+               exception = new IllegalStateException(message, exception);
+            else if (message.indexOf("could not be found") != -1)
+               exception = new ResourceNotFoundException(message, exception);
+            // RUITODO: more exceptions here
             break;
          case 401:
          case 403:

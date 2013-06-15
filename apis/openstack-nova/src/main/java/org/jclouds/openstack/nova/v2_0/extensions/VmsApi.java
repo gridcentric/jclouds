@@ -23,6 +23,7 @@ import org.jclouds.concurrent.Timeout;
 import org.jclouds.openstack.v2_0.ServiceType;
 import org.jclouds.openstack.v2_0.services.Extension;
 import org.jclouds.openstack.nova.v2_0.domain.ServerCreated;
+import org.jclouds.openstack.nova.v2_0.domain.Server;
 import org.jclouds.openstack.nova.v2_0.options.LaunchServerOptions; 
 
 import com.google.common.annotations.Beta;
@@ -68,4 +69,19 @@ public interface VmsApi {
      * @param serverId id of the server
      */
     boolean liveImageDelete(String serverId);
+
+    /**
+     * Lists the live images of this instance
+     *
+     * @param serverId id of the server
+     */
+    FluentIterable<? extends Server> liveImageList(String serverId);
+
+
+    /**
+     * Lists the instance started from this live image
+     *
+     * @param serverId id of the server
+     */
+    FluentIterable<? extends Server> liveImageServers(String serverId);
 }

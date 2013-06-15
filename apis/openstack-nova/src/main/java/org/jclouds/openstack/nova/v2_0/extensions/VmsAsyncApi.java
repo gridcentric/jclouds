@@ -30,6 +30,7 @@ import javax.ws.rs.core.MediaType;
 import org.jclouds.openstack.keystone.v2_0.filters.AuthenticateRequest;
 import org.jclouds.openstack.nova.v2_0.domain.VolumeAttachment;
 import org.jclouds.openstack.nova.v2_0.domain.ServerCreated;
+import org.jclouds.openstack.nova.v2_0.domain.Server;
 import org.jclouds.openstack.nova.v2_0.options.LaunchServerOptions;
 import org.jclouds.openstack.v2_0.ServiceType;
 import org.jclouds.openstack.v2_0.services.Extension;
@@ -97,6 +98,24 @@ public interface VmsAsyncApi {
    @Consumes
    @Produces(MediaType.APPLICATION_JSON)
    @Payload("{\"gc_discard\":null}")
-   @ExceptionParser(ReturnFalseOnNotFoundOr404.class)
+   // @ExceptionParser(ReturnFalseOnNotFoundOr404.class)
    ListenableFuture<Boolean> liveImageDelete(@PathParam("server_id") String serverId);
+
+   /**
+    * @see Vms#liveImageList(String)
+    */
+   @POST
+   @Consumes
+   // @Produces(MediaType.APPLICATION_JSON)
+   @Payload("{\"gc_list_blessed\":null}")
+   ListenableFuture<? extends FluentIterable<? extends Server>> liveImageList(@PathParam("server_id") String serverId);
+
+   /**
+    * @see Vms#liveImageServers(String)
+    */
+   @POST
+   @Consumes
+   // @Produces(MediaType.APPLICATION_JSON)
+   @Payload("{\"gc_list_launched\":null}")
+   ListenableFuture<? extends FluentIterable<? extends Server>> liveImageServers(@PathParam("server_id") String serverId);
 }

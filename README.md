@@ -105,6 +105,19 @@ Compute Example (Clojure):
 
 Check out https://github.com/jclouds/jclouds-examples for more examples!
 
+VMS Support
+------------------------
+
+This branch adds support for vms commands via a nova compute extension.
+Currently supported functionality include:
+* liveImageCreate
+* liveImageStart
+* liveImageDelete
+* liveImageList
+* liveImageServers
+
+See https://github.com/gridcentric/jclouds-vms-test for examples.
+
 Downloads
 ------------------------
 * release notes: http://www.jclouds.org/documentation/releasenotes/1.3
